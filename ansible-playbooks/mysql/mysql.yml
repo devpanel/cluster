@@ -1,0 +1,21 @@
+---
+  - hosts: all
+
+    vars:
+      port: 3307
+      key_buffer: 26M
+      port: 3307
+      max_allowed_packet: 16M
+      query_cache_limit: 1M
+      query_cache_size: 16M
+      expire_logs_days: 10
+      max_binlog_size: 100M
+      thread_stack: 192K
+      thread_cache_size: 8
+     
+
+    tasks:
+      - include: tasks/setup-mysql.yml
+
+    handlers:
+      - include: handlers/handlers.yml

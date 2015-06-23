@@ -1,0 +1,41 @@
+server {
+        listen          80;
+        access_log  /var/log/nginx/app_access.log ;
+        server_name  {{ server_name }} ;
+        root    {{document_root }} ;
+        error_page 502 503 504 /50x.html;
+
+        add_header 'Access-Control-Allow-Origin' '*';
+##
+
+
+   # auth_basic "closed website";
+   # auth_basic_user_file htpasswd;
+
+        location / {
+                index   index.html index.htm index.php;
+                if (!-e $request_filename) { rewrite . /index.php last; }
+        }
+
+	location ~ \.php$ {
+    		try_files $uri =404;
+    		fastcgi_intercept_errors on;
+   		fastcgi_index  index.php;
+    		include        fastcgi_params;
+    		fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
+    		fastcgi_pass   php-fpm;
+	}
+
+
+        location ~ /\.ht {
+                deny  all;
+        }
+
+        location ~ \.(jpg|gif|png|ico|jpeg)$ {
+                expires 7d;
+        }
+
+	include /etc/nginx/conf.d/cache.inc ;
+
+
+}
