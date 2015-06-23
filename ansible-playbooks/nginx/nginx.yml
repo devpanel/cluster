@@ -8,8 +8,6 @@
       pid: /var/run/nginx.pid
       worker_connections: 768
       fpm_port: 9000
-      server_name: my.domain.com
-      document_root: /var/www/html1
 
     tasks:
       - include: tasks/setup-nginx.yml

@@ -7,6 +7,6 @@
   notify:
       - restart mysql
 - name: write my.cnf
-  action: template src=my.cnf.j2 dest=/etc/mysql/my.cnf
+  action: template src=templates/my.cnf.j2 dest=/etc/mysql/my.cnf
   notify:
       - restart nginx

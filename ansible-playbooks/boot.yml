@@ -31,6 +31,5 @@
   roles:
     - nginx
     - php5
-    - mysql
 
 

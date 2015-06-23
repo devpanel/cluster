@@ -19,9 +19,10 @@
     notify:
       - restart nginx
   - name: write vhost.conf
-    action: template src=vhost.conf.j2 dest=/etc/nginx/sites-enabled/vhost.conf
+    action: template src=vhost.conf.j2 dest=/etc/nginx/sites-enabled/{{ server_name }}.conf
     notify:
       - restart nginx
+
 
 
 
